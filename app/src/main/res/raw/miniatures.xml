@@ -1,0 +1,72 @@
+<miniatures>
+    <miniature>
+        <id>1</id>
+        <name>Ancient</name>
+        <faction>Blood Angels</faction>
+        <imageUrls>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=13E9_FtS_Ojb2A1hVQeCeC88S3pOhnzX6</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1ppHNDgoeROz63qRkFnsmXOzct51KM0wq</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1D4VT98e9Ap6iJfFz21jY9nmA_A6eO5pi</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1wUFopqFKjcOIbIAKXJDrq-x5fQkLT1ox</imageUrl>
+        </imageUrls>
+    </miniature>
+    <miniature>
+        <id>2</id>
+        <name>Norn</name>
+        <faction>Tyranids</faction>
+        <imageUrls>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1JJvL3VMmc5zkATWXgCUWW5i-LtDwKJhE</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1aZ0BQ_rvgsHSxu_Fzv3I3Gp7uQyL7O4S</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1tPESD0AaTMpoD--Sq0WXio9pas0_qn_l</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1CysAb9ftwSsIpGjvRGWCG73L8XRpEP6m</imageUrl>
+        </imageUrls>
+    </miniature>
+    <miniature>
+        <id>3</id>
+        <name>Librarian</name>
+        <faction>Sons of Horus</faction>
+        <imageUrls>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=10-DgpvrJqzTHrmQ_NfFaXIDCn4ZJ05KC</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1vUTOignPF9d0AY4hQquK-0Vw_jtlCBA4</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1RTl2OFsf0E2ujUAZm8Lcnm0riv8P0Z6l</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1XYAq_y-1qcnKwawyOaQnXHy-ap132UKN</imageUrl>
+        </imageUrls>
+    </miniature>
+    <miniature>
+        <id>4</id>
+        <name>Venerable Dreadnought</name>
+        <faction>Space Wolves</faction>
+        <imageUrls>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=11bI1HwEuDdvtIJ4JIB0tz2ud7AXJOhcM</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1r24J0uXHv5iA6Hi9NF_tRakdQhxfpKOU</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=11VvXJgXAFsaLzO77hXUnKR-UbjJYTTaT</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=14D9To9pv0P7xsySY16bxJ4MmPAGC_PVq</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1F0esuDGs3Mj6FVL5_18YzkFKLhj0X5R9</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=15xTicvwDgZE4YB2e3LYtvdfNlZBNd_Yg</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1cxH725LJc-ULmw0CF00EMU7dOlc3gHEc</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1IRQR2ZpwlanK0o99XFgGrzpFagFuRfD2</imageUrl>
+        </imageUrls>
+    </miniature>
+    <miniature>
+        <id>5</id>
+        <name>Pretor</name>
+        <faction>Luna Wolves</faction>
+        <imageUrls>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1L-XK_ICgRuJrQ-8QDzd1yTtp3scAYQrZ</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1QPzkv6VlxzNN78FF3y1rPwdwO3tcipPX</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=14T_WHe1aRHqnncVjiQCRm7gPoTPjcVqe</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1PcvF6Yj6ueKBbB7WMua_DKesadmzCYmI</imageUrl>
+        </imageUrls>
+    </miniature>	
+    <miniature>
+        <id>6</id>
+        <name>Captain</name>
+        <faction>Blood Angels</faction>
+        <imageUrls>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=16Yd1fiejL7OZYRzoQxZxTsK9tS6lgUN7</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1ic2aOTS-ep3lpwHdo-yCh-S8KpdDlsRe</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1NJOIxSVgsPYfqK9mDAzwqOFttNn_glLE</imageUrl>
+            <imageUrl>https://drive.google.com/uc?export=view&amp;id=1JNj2aPIUkjMakjkqzOTmCtqHXv53rI02</imageUrl>
+        </imageUrls>
+    </miniature>
+</miniatures>

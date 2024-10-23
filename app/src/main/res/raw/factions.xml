@@ -1,0 +1,17 @@
+<factions>
+    <faction>
+        <name>Blood Angels</name>
+    </faction>
+    <faction>
+        <name>Tyranids</name>
+    </faction>
+	<faction>
+        <name>Sons of Horus</name>
+    </faction>
+	<faction>
+        <name>Luna Wolves</name>
+    </faction>
+	<faction>
+        <name>Space Wolves</name>
+    </faction>
+</factions>
