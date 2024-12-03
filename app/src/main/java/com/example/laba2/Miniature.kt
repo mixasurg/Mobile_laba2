@@ -1,3 +1,5 @@
+package com.example.laba2
+
 import android.os.Parcel
 import android.os.Parcelable
 

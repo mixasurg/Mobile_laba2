@@ -1,61 +1,59 @@
 package com.example.laba2
 
 import android.os.Bundle
-import android.widget.TextView
-import androidx.viewpager2.widget.ViewPager2
-import Miniature
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+import com.example.laba2.databinding.FragmentDetailBinding
+import androidx.navigation.fragment.findNavController
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+class DetailFragment : Fragment(), DetailView {
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
 
-class DetailFragment : Fragment() {
-    private lateinit var miniature: Miniature
-    private lateinit var viewPager: ViewPager2
-    private lateinit var detailName: TextView
-    private lateinit var detailFaction: TextView
+    private val args: DetailFragmentArgs by navArgs() // Используем Safe Args для получения данных
+    private lateinit var presenter: DetailPresenter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_detail, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        presenter = DetailPresenter(this)
 
-        miniature = arguments?.getParcelable("miniatureData") ?: Miniature(0, "", "", emptyList())
+        val miniature = args.miniatureData // Получаем объект Miniature через Safe Args
+        presenter.loadMiniatureDetails(miniature)
 
-        viewPager = view.findViewById(R.id.viewPager)
-        detailName = view.findViewById(R.id.detailName)
-        detailFaction = view.findViewById(R.id.detailFaction)
-        val backButton: FloatingActionButton = view.findViewById(R.id.backButton)
-        val editButton: FloatingActionButton = view.findViewById(R.id.editButton)
-
-        val sliderAdapter = SliderAdapter(miniature.imageUrls)
-        viewPager.adapter = sliderAdapter
-
-        detailName.text = miniature.name
-        detailFaction.text = miniature.faction
-
-
-        backButton.setOnClickListener {
-            activity?.onBackPressed()
+        binding.editButton.setOnClickListener {
+            presenter.onEditMiniature(miniature)
+        }
+        binding.backButton.setOnClickListener{
+            navigateBack()
         }
 
-        editButton.setOnClickListener {
-            val bundle = Bundle()
-
-            val editFragment = EditFragment()
-            bundle.putParcelable("miniatureData", miniature)
-            editFragment.arguments = bundle
-
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment, editFragment)
-                .addToBackStack(null)
-                .commit()
-        }
-
-        return view
+        return binding.root
     }
 
+    override fun displayMiniatureDetails(miniature: Miniature) {
+        binding.detailName.text = miniature.name
+        binding.detailFaction.text = miniature.faction
+
+        val sliderAdapter = SliderAdapter(miniature.imageUrls)
+        binding.viewPager.adapter = sliderAdapter
+    }
+
+    override fun navigateToEdit(miniature: Miniature) {
+        val action = DetailFragmentDirections.actionDetailFragmentToEditFragment(miniature)
+        findNavController().navigate(action) // Используем Safe Args для перехода
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    override fun navigateBack() {
+        parentFragmentManager.popBackStack()
+    }
 }
+
+
+

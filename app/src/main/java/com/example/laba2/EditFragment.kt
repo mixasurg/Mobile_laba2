@@ -1,107 +1,68 @@
 package com.example.laba2
 
-import Miniature
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserFactory
-import java.io.InputStream
+import androidx.navigation.fragment.navArgs
+import com.example.laba2.databinding.FragmentEditMiniatureBinding
 
-class EditFragment : Fragment() {
-    private lateinit var miniature: Miniature
-    private lateinit var factionList: List<String>
+class EditFragment : Fragment(), EditView {
+    private var _binding: FragmentEditMiniatureBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_edit_miniature, container, false)
+    private val args: EditFragmentArgs by navArgs() // Используем Safe Args для получения данных
+    private lateinit var presenter: EditPresenter
 
-        miniature = arguments?.getParcelable("miniatureData") ?: Miniature(0, "", "", emptyList())
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentEditMiniatureBinding.inflate(inflater, container, false)
+        presenter = EditPresenter(MiniatureRepository(requireContext()), this)
 
-        factionList = loadFactionsFromXml().keys.toList()
-        Log.d("EditFragment", "Loaded factions: $factionList")
+        val miniature = args.miniatureData // Получаем объект Miniature через Safe Args
+        presenter.loadMiniatureForEdit(miniature)
 
-        val nameEdit: EditText = view.findViewById(R.id.nameEdit)
-        val factionSpinner: Spinner = view.findViewById(R.id.factionSpinner)
-        val saveButton: Button = view.findViewById(R.id.saveButton)
-        val backButton: FloatingActionButton = view.findViewById(R.id.backButton)
-
-        nameEdit.setText(miniature.name)
-
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, factionList)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        factionSpinner.adapter = adapter
-
-        val factionIndex = factionList.indexOf(miniature.faction)
-        if (factionIndex >= 0) {
-            factionSpinner.setSelection(factionIndex)
+        binding.saveButton.setOnClickListener {
+            miniature.name = binding.nameEdit.text.toString()
+            miniature.faction = binding.factionSpinner.selectedItem.toString()
+            presenter.saveMiniature(miniature)
         }
 
-        saveButton.setOnClickListener {
-            miniature.name = nameEdit.text.toString()
-            miniature.faction = factionSpinner.selectedItem.toString()
-
-            val resultBundle = Bundle()
-            resultBundle.putParcelable("updatedMiniature", miniature)
-
-            parentFragmentManager.setFragmentResult("requestKey", resultBundle)
-
-            requireActivity().supportFragmentManager.popBackStack()
+        binding.backButton.setOnClickListener{
+            navigateBack()
         }
 
-        backButton.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
-
-        return view
+        return binding.root
     }
 
-    private fun loadFactionsFromXml(): Map<String, String> {
-        val factionMap = mutableMapOf<String, String>()
-        try {
-            val inputStream: InputStream = resources.openRawResource(R.raw.factions)
-            val factory = XmlPullParserFactory.newInstance()
-            val parser = factory.newPullParser()
-            parser.setInput(inputStream, null)
 
-            var eventType = parser.eventType
-            var factionName: String? = null
+    override fun populateFields(miniature: Miniature, factions: Map<String, String>) {
+        binding.nameEdit.setText(miniature.name)
 
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                val tagName = parser.name
-                when (eventType) {
-                    XmlPullParser.START_TAG -> {
-                        if (tagName.equals("faction", ignoreCase = true)) {
-                            factionName = ""
-                        } else if (factionName != null) {
-                            when (tagName) {
-                                "name" -> factionName = parser.nextText()
-                            }
-                        }
-                    }
-                    XmlPullParser.END_TAG -> {
-                        if (tagName.equals("faction", ignoreCase = true) && factionName != null) {
-                            factionMap[factionName] = ""
-                        }
-                    }
-                }
-                eventType = parser.next()
-            }
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, factions.keys.toList())
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.factionSpinner.adapter = adapter
 
-            inputStream.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Log.e("EditFragment", "Error loading factions: ${e.message}")
+        val factionIndex = factions.keys.toList().indexOf(miniature.faction)
+        if (factionIndex >= 0) {
+            binding.factionSpinner.setSelection(factionIndex)
         }
-        return factionMap
+    }
+
+    override fun showError(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun navigateBack() {
+        parentFragmentManager.popBackStack()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
+
+

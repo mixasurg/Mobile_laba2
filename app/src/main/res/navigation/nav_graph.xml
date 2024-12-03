@@ -18,6 +18,9 @@
         android:id="@+id/detailFragment"
         android:name="com.example.laba2.DetailFragment"
         android:label="Detail Fragment">
+        <argument
+            android:name="miniatureData"
+            app:argType=".Miniature" />
         <action
             android:id="@+id/action_detailFragment_to_editFragment"
             app:destination="@id/editFragment" />
@@ -26,5 +29,9 @@
     <fragment
         android:id="@+id/editFragment"
         android:name="com.example.laba2.EditFragment"
-        android:label="Edit Fragment"/>
+        android:label="Edit Fragment">
+        <argument
+            android:name="miniatureData"
+            app:argType=".Miniature" />
+    </fragment>
 </navigation>
